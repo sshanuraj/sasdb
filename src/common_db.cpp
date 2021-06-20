@@ -104,7 +104,24 @@ insertCols parseInsertQuery(string query, map<string, Table> tables)
 		ret.res = INSERT_FAIL;
 		return ret;
 	}
+
 	string tableName = split[2];
+	if(tables.count(tableName) == 0)
+	{
+		logToFile("ERROR", "No table named '" + tableName + "' exists in DB.");
+		ret.res = INSERT_FAIL;
+		return ret;
+	}
+
+	Table table = tables[tableName];
+	int lenColVals = split.size() - 3;
+	if (lenColVals != table.cols.size())
+	{
+		logToFile("ERROR", "Not enough parameters listed.");
+		ret.res = INSERT_FAIL;
+		return ret;
+	}
+
 
 	tablePair tp;
 	return ret;

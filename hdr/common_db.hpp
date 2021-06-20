@@ -108,7 +108,7 @@ struct InsertGroup
 struct Table
 {
 	string tname;
-	map<string, int> cols;
+	map<string, dtypes> cols;
 	map<string, string> pKey;
 	InsertGroup insGroup;
 };
